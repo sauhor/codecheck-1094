@@ -102,10 +102,12 @@ app.get('/api/projects/:id', function (req, res, next) {
         .then(function (projects) {
             if (Object.keys(projects).length !== 0) {
                 res.status(200).json(projects);
+                return next(); 
             } else {
-                res.status(404).json("not found");
+                res.status(404).json("NotFound");
+                return next();
+
             }
-            return next();
         })
     .catch(function (err) {
         res.status(500).json(err);
